@@ -1,6 +1,16 @@
 const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
+const speechBubble = document.getElementById('speechBubble');
+
 let noCounter = 0;
+
+const reactions = [
+    "Why do you keep trying to say no?",
+    "Do you hate me that much?",
+    "I thought we had something special...!",
+    "Is there something wrong with me?",
+    "Just give me a chance already!"
+];
 
 noBtn.addEventListener('mouseover', () => {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -10,8 +20,8 @@ noBtn.addEventListener('mouseover', () => {
     noBtn.style.top = `${y}px`;
     noCounter++;
 
-    if(noCounter%5 === 0 )
-    {
-        alert("Stop trying to click the 'No' button! You know you want to click 'Yes'!");
+    if (noCounter % 3 === 0) {
+        const reaction = reactions[Math.floor(Math.random() * reactions.length)];
+        speechBubble.innerText = reaction;
     }
 });
