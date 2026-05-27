@@ -12,6 +12,6 @@ noBtn.addEventListener('mouseover', () => {
 
     if(noCounter%5 === 0 )
     {
-        alert("Non puoi dirmi di no! 😜");
+        alert("Stop trying to click the 'No' button! You know you want to click 'Yes'!");
     }
 });
