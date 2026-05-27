@@ -8,6 +8,9 @@ const cinemaOption = document.getElementById('cinemaOption');
 const sushiOption = document.getElementById('sushiOption');
 const picnicOption = document.getElementById('picnicOption');
 const nvmOption = document.getElementById('nvmOption');
+const cinemaStep = document.getElementById('thirdStepCinema');
+const sushiStep = document.getElementById('thirdStepSushi');
+const picnicStep = document.getElementById('thirdStepPicnic');
 
 let noCounter = 0;
 let typingTimeout;
@@ -104,11 +107,13 @@ picnicOption.addEventListener('mouseover', () => {
 cinemaOption.addEventListener('click', () => {
     typeWriter("Great choice! I love the cinema!");
     secondStep.classList.add('d-none');
+    thirdStepContent(1);
 });
 
 sushiOption.addEventListener('click', () => {
     typeWriter("Sushi is delicious! Let's go!");
     secondStep.classList.add('d-none');
+    thirdStepContent(2);
 });
 
 nvmOption.addEventListener('click', () => {
@@ -118,4 +123,27 @@ nvmOption.addEventListener('click', () => {
 picnicOption.addEventListener('click', () => {
     typeWriter("A picnic sounds lovely! Let's do it!");
     secondStep.classList.add('d-none');
+    thirdStepContent(3);
 });
+
+// 1 = cinema, 2 = sushi, 3 = picnic
+function thirdStepContent(choice) { 
+    switch (choice) {
+        case 1:
+            typeWriter("Which film should we watch?");
+            questionDisplay.textContent = "Which film do you want to watch?";
+            cinemaStep.classList.remove('d-none');
+            break;
+        case 2:
+            typeWriter("Which sushi place should we go to?");
+            questionDisplay.textContent = "Which sushi place do you want to go to?";
+            sushiStep.classList.remove('d-none');
+            break;
+        case 3:
+            typeWriter("Where should we have the picnic?");
+            questionDisplay.textContent = "Where should we have the picnic?";
+            picnicStep.classList.remove('d-none');
+        default:
+            return "";
+    }
+}
