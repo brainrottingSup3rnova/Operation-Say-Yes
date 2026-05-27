@@ -42,13 +42,12 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
     z-index: 10;
 }
 
 .character-img {
-    width: 176px;
-    height: 176px;
+    width: 208px;
+    height: 208px;
     object-fit: cover;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
@@ -64,15 +63,17 @@ body {
     line-height: 1.6;
     color: #000000;
     box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    word-break: break-word;  
 }
 
 .speech-bubble::after {
     content: '';
     position: absolute;
-    left: -16px;
+    left: -12px;
     top: 50%;
     transform: translateY(-50%);
-    width: 12px;
+    width: 8px;
     height: 16px;
     background: #ffffff;
     border-top: 4px solid #000000;
