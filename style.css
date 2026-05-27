@@ -110,3 +110,8 @@ body {
     background-color: #ff4757;
     color: white;
 }
+
+.card:hover {
+    cursor: pointer;
+    border :#000000 solid 2px !important;
+}

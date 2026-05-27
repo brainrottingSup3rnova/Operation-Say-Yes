@@ -11,10 +11,48 @@
 
 <body>
     <div class="container">
-        <h1>Would you like to go on a date with me?</h1>
-        <div class="d-flex justify-content-center mt-4">
-            <button id="yesBtn" class="btn btn-success me-5">Yes!!</button>
-            <button id="noBtn" class="btn btn-danger">No..</button>
+        <h1 id="questionDisplayer">Would you like to go on a date with me?</h1>
+        <div id="firstStep">
+            <div class="d-flex justify-content-center mt-4">
+                <button id="yesBtn" class="btn btn-success me-5">Yes!!</button>
+                <button id="noBtn" class="btn btn-danger">No..</button>
+            </div>
+        </div>
+        <div id="secondStep" class="d-none mt-4">
+            <form>
+                <div class="row g-3 mb-2 selection-grid">
+                    <div class="col-6">
+                        <div id="cinemaOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_cinema.png" alt="Cinema Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Cinema</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="picnicOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_picnic.png" alt="Picnic Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Picnic</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 mb-4 selection-grid">
+                    <div class="col-6">
+                        <div id="sushiOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_sushi.png" alt="Sushi Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Sushi</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="nvmOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_cross.png" alt="Cross Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Nvm...</strong>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="character-container">
