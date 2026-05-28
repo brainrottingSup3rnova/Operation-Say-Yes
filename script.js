@@ -19,6 +19,10 @@ const picnic1 = document.getElementById('picnicOption1');
 const picnic2 = document.getElementById('picnicOption2');
 const fourthStep = document.getElementById('fourthStep');
 const confirmBtn = document.getElementById('confirmBtn');
+const pixelGirlImg = document.getElementById('pixelGirlImg');
+const pixelGirlShockedImg = document.getElementById('pixelGirlShockedImg');
+const pixelGirlTiredImg = document.getElementById('pixelGirlTiredImg');
+
 
 let noCounter = 0;
 let typingTimeout;
@@ -39,6 +43,20 @@ const indecidedReactions = [
     "Are you gonna choose or what?",
 ];
 
+function changeExpression(expression) {
+    pixelGirlImg.classList.add('d-none');
+    pixelGirlShockedImg.classList.add('d-none');
+    pixelGirlTiredImg.classList.add('d-none');
+
+    if (expression === 'normal') {
+        pixelGirlImg.classList.remove('d-none');
+    } else if (expression === 'shocked') {
+        pixelGirlShockedImg.classList.remove('d-none');
+    } else if (expression === 'tired') {
+        pixelGirlTiredImg.classList.remove('d-none');
+    }
+}
+
 function typeWriter(text, index = 0) {
     if (index === 0) {
         speechBubble.innerHTML = "";
@@ -58,7 +76,6 @@ function typeWriter(text, index = 0) {
 }
 
 noBtn.addEventListener('mouseover', () => {
-    //TODO: check if the button would end under the girl and if so, move it to the opposite side of the screen
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
     noBtn.style.position = 'absolute';
@@ -66,13 +83,18 @@ noBtn.addEventListener('mouseover', () => {
     noBtn.style.top = `${y}px`;
     noCounter++;
 
+    if (noCounter > 5) {
+        changeExpression('tired');
+    }
     if (noCounter % 3 === 0) {
+        changeExpression('shocked');
         const reaction = noReactions[Math.floor(Math.random() * noReactions.length)];
         typeWriter(reaction);
     }
 });
 
 yesBtn.addEventListener('click', () => {
+    changeExpression('normal');
     typeWriter("Yay! I knew you'd say yes!");
     yesBtn.classList.add('d-none');
     noBtn.classList.add('d-none');
@@ -80,17 +102,18 @@ yesBtn.addEventListener('click', () => {
     firstStep.classList.add('d-none');
     secondStep.classList.remove('d-none');
 
-
     typeWriter("Where shall we meet?");
 });
 
 nvmOption.addEventListener('mouseover', () => {
+    changeExpression('shocked');
     typeWriter("no- you won't click it, right? right??");
 });
 
 cinemaOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
+        changeExpression('tired');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
@@ -99,6 +122,7 @@ cinemaOption.addEventListener('mouseover', () => {
 sushiOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
+        changeExpression('tired');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
@@ -107,28 +131,33 @@ sushiOption.addEventListener('mouseover', () => {
 picnicOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
+        changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 
 cinemaOption.addEventListener('click', () => {
+    changeExpression('normal');
     typeWriter("Great choice! I love the cinema!");
     secondStep.classList.add('d-none');
     thirdStepContent(1);
 });
 
 sushiOption.addEventListener('click', () => {
+    changeExpression('normal');
     typeWriter("Sushi is delicious! Let's go!");
     secondStep.classList.add('d-none');
     thirdStepContent(2);
 });
 
 nvmOption.addEventListener('click', () => {
+    changeExpression('shocked');
     typeWriter("NO! YOU CAN'T DO THAT! YOU PROMISED!");
 });
 
 picnicOption.addEventListener('click', () => {
+    changeExpression('normal');
     typeWriter("A picnic sounds lovely! Let's do it!");
     secondStep.classList.add('d-none');
     thirdStepContent(3);
@@ -206,6 +235,7 @@ confirmBtn.addEventListener('click', (e) => {
     const datePickerTimeValue = document.getElementById('timePicker').value;
 
     if (datePickerValue === "" || datePickerTimeValue === "") {
+        changeExpression('shocked');
         typeWriter("Aren't you forgetting something?");
         return;
     }
@@ -215,16 +245,20 @@ confirmBtn.addEventListener('click', (e) => {
     today.setHours(0, 0, 0, 0);
 
     if (selectedDate < today) {
+        changeExpression('shocked');
         typeWriter("Are you trying to set a date in the past? That's not gonna work!");
         return; // Interrompiamo l'esecuzione se la data è passata
     }
     if (datePickerTimeValue < "10:00") {
+        changeExpression('tired');
         typeWriter("Mmm, before 10:00 AM? I'm probably still asleep... Let's do it later!");
         return;
     }
     if (datePickerTimeValue > "22:00") {
+        changeExpression('tired');
         typeWriter("After 10:00 PM? That's a bit too late for me, I have to go to sleep early!");
         return;
     }
+    changeExpression('normal');
     typeWriter("Perfect! It's a date! See you then!");
 });
