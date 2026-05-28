@@ -10,126 +10,151 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 id="questionDisplayer">Would you like to go on a date with me?</h1>
-        <div id="firstStep">
-            <div class="d-flex justify-content-center mt-4">
-                <button id="yesBtn" class="btn btn-success me-5">Yes!!</button>
-                <button id="noBtn" class="btn btn-danger">No..</button>
+    <div class="game-container">
+        <div class="character-panel">
+            <h1>
+
+            </h1>
+            <div class="speech-bubble" id="speechBubble">
+                Hii! I wanted to ask you something...
+            </div>
+            <div class="character-sprite-wrapper">
+                <img src="assets/pixel_girl.png" alt="Pixel Girl" class="character-img" id="pixelGirlImg">
+                <img src="assets/pixel_girl_shocked.png" alt="Pixel Girl Shocked" class="character-img d-none"
+                    id="pixelGirlShockedImg">
+                <img src="assets/pixel_girl_tired.png" alt="Pixel Girl Tired" class="character-img d-none"
+                    id="pixelGirlTiredImg">
             </div>
         </div>
-        <div id="secondStep" class="d-none mt-4">
-            <form>
-                <div class="row g-3 mb-2 selection-grid">
-                    <div class="col-6">
-                        <div id="cinemaOption" class="card h-100 text-center p-3 selection-box cp border-2">
-                            <img src="assets/pixel_cinema.png" alt="Cinema Icon" class="mx-auto mb-2 option-icon"
-                                style="height: 60px; object-fit: contain;">
-                            <strong>Cinema</strong>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div id="picnicOption" class="card h-100 text-center p-3 selection-box cp border-2">
-                            <img src="assets/pixel_picnic.png" alt="Picnic Icon" class="mx-auto mb-2 option-icon"
-                                style="height: 60px; object-fit: contain;">
-                            <strong>Picnic</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-3 mb-4 selection-grid">
-                    <div class="col-6">
-                        <div id="sushiOption" class="card h-100 text-center p-3 selection-box cp border-2">
-                            <img src="assets/pixel_sushi.png" alt="Sushi Icon" class="mx-auto mb-2 option-icon"
-                                style="height: 60px; object-fit: contain;">
-                            <strong>Sushi</strong>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div id="nvmOption" class="card h-100 text-center p-3 selection-box cp border-2">
-                            <img src="assets/pixel_cross.png" alt="Cross Icon" class="mx-auto mb-2 option-icon"
-                                style="height: 60px; object-fit: contain;">
-                            <strong>Nvm...</strong>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div id="thirdStepCinema" class="d-none mt-4">
-            <div class="row g-3 mb-2 selection-grid">
-                <div class="col-6">
-                    <div id="filmOption1" class="card h-100 text-center p-3 selection-box cp border-2">
-                        <img src="assets/pixel_film1.png" alt="Film 1 Icon" class="mx-auto mb-2 option-icon"
-                            style="height: 60px; object-fit: contain;">
-                        <strong>Kiki's Delivery Service</strong>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div id="filmOption2" class="card h-100 text-center p-3 selection-box cp border-2">
-                        <img src="assets/pixel_film2.png" alt="Film 2 Icon" class="mx-auto mb-2 option-icon"
-                            style="height: 60px; object-fit: contain;">
-                        <strong>My Neighbor Totoro</strong>
-                    </div>
+
+        <div class="container">
+            <h1 id="questionDisplayer">Would you like to go on a date with me?</h1>
+            <div id="firstStep">
+                <div class="d-flex justify-content-center mt-4">
+                    <button id="yesBtn" class="btn btn-success me-5">Yes!!</button>
+                    <button id="noBtn" class="btn btn-danger">No..</button>
                 </div>
             </div>
-        </div>
-        <div id="thirdStepSushi" class="d-none mt-4">
-            <div class="row g-3 mb-2 selection-grid">
-                <div class="col-6">
-                    <div id="sushiOption1" class="card h-100 text-center p-3 selection-box cp border-2">
-                        <img src="assets/pixel_sushi1.png" alt="Sushi 1 Icon" class="mx-auto mb-2 option-icon"
-                            style="height: 60px; object-fit: contain;">
-                        <strong>ITOI Sushi Forlì</strong>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div id="sushiOption2" class="card h-100 text-center p-3 selection-box cp border-2">
-                        <img src="assets/pixel_sushi2.png" alt="Sushi 2 Icon" class="mx-auto mb-2 option-icon"
-                            style="height: 60px; object-fit: contain;">
-                        <strong>Yako Sushi Cesena</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="thirdStepPicnic" class="d-none">
-            <div class="row g-3 mb-2 selection-grid">
-                <div class="col-6">
-                    <div id="picnicOption1" class="card h-100 text-center p-3 selection-box cp border-2">
-                        <img src="assets/pixel_park1.png" alt="Picnic 1 Icon" class="mx-auto mb-2 option-icon"
-                            style="height: 60px; object-fit: contain;">
-                        <strong>Parco della Resistenza</strong>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div id="picnicOption2" class="card h-100 text-center p-3 selection-box cp border-2">
-                        <img src="assets/pixel_park2.png" alt="Picnic 2 Icon" class="mx-auto mb-2 option-icon"
-                            style="height: 60px; object-fit: contain;">
-                        <strong>Parco Urbano Franco Agosto</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="fourthStep" class="d-none">
-            <div class="d-flex justify-content-center mt-4">
+
+            <div id="secondStep" class="d-none mt-4">
                 <form>
-                    <div class="mb-3">
-                        <label for="datePicker" class="form-label">Date</label>
-                        <input type="date" id="datePicker" class="form-control" style="max-width: 300px;">
+                    <div class="row g-3 mb-2 selection-grid">
+                        <div class="col-6">
+                            <div id="cinemaOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                                <img src="assets/pixel_cinema.png" alt="Cinema Icon" class="mx-auto mb-2 option-icon"
+                                    style="height: 60px; object-fit: contain;">
+                                <strong>Cinema</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="picnicOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                                <img src="assets/pixel_picnic.png" alt="Picnic Icon" class="mx-auto mb-2 option-icon"
+                                    style="height: 60px; object-fit: contain;">
+                                <strong>Picnic</strong>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="timePicker" class="form-label">Time</label>
-                        <input type="time" id="timePicker" class="form-control" style="max-width: 300px;">
+                    <div class="row g-3 mb-4 selection-grid">
+                        <div class="col-6">
+                            <div id="sushiOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                                <img src="assets/pixel_sushi.png" alt="Sushi Icon" class="mx-auto mb-2 option-icon"
+                                    style="height: 60px; object-fit: contain;">
+                                <strong>Sushi</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="nvmOption" class="card h-100 text-center p-3 selection-box cp border-2">
+                                <img src="assets/pixel_cross.png" alt="Cross Icon" class="mx-auto mb-2 option-icon"
+                                    style="height: 60px; object-fit: contain;">
+                                <strong>Nvm...</strong>
+                            </div>
+                        </div>
                     </div>
-                    <button id="confirmBtn" class="btn btn-success">Confirm</button>
                 </form>
             </div>
+
+            <div id="thirdStepCinema" class="d-none mt-4">
+                <div class="row g-3 mb-2 selection-grid">
+                    <div class="col-6">
+                        <div id="filmOption1" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_film1.png" alt="Film 1 Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Kiki's Delivery Service</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="filmOption2" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_film2.png" alt="Film 2 Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>My Neighbor Totoro</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="thirdStepSushi" class="d-none mt-4">
+                <div class="row g-3 mb-2 selection-grid">
+                    <div class="col-6">
+                        <div id="sushiOption1" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_sushi1.png" alt="Sushi 1 Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>ITOI Sushi Forlì</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="sushiOption2" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_sushi2.png" alt="Sushi 2 Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Yako Sushi Cesena</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="thirdStepPicnic" class="d-none">
+                <div class="row g-3 mb-2 selection-grid">
+                    <div class="col-6">
+                        <div id="picnicOption1" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_park1.png" alt="Picnic 1 Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Parco della Resistenza</strong>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="picnicOption2" class="card h-100 text-center p-3 selection-box cp border-2">
+                            <img src="assets/pixel_park2.png" alt="Picnic 2 Icon" class="mx-auto mb-2 option-icon"
+                                style="height: 60px; object-fit: contain;">
+                            <strong>Parco Urbano Franco Agosto</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fourthStep" class="d-none">
+                <div class="d-flex justify-content-center mt-4">
+                    <form>
+                        <div class="mb-3">
+                            <label for="datePicker" class="form-label">Date</label>
+                            <input type="date" id="datePicker" class="form-control" style="max-width: 300px;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="timePicker" class="form-label">Time</label>
+                            <input type="time" id="timePicker" class="form-control" style="max-width: 300px;">
+                        </div>
+                        <button id="confirmBtn" class="btn btn-success">Confirm</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="character-container">
-        <img src="assets/pixel_girl.png" alt="Pixel Girl" class="character-img" id="pixelGirlImg">
-        <img src="assets/pixel_girl_shocked.png" alt="Pixel Girl Shocked" class="character-img d-none" id="pixelGirlShockedImg">
-        <img src="assets/pixel_girl_tired.png" alt="Pixel Girl Tired" class="character-img d-none" id="pixelGirlTiredImg">
-        <div class="speech-bubble" id="speechBubble">
-            Hii! I wanted to ask you something...
+        <div class="report-panel">
+            <h1>
+                The perfect date!
+            </h1>
+            <ul>
+                <li id="reportLocation" class="d-none"></li>
+                <li id="reportDetail" class="d-none"></li>
+                <li id="reportDate" class="d-none"></li>
+            </ul>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

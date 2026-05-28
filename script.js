@@ -22,7 +22,9 @@ const confirmBtn = document.getElementById('confirmBtn');
 const pixelGirlImg = document.getElementById('pixelGirlImg');
 const pixelGirlShockedImg = document.getElementById('pixelGirlShockedImg');
 const pixelGirlTiredImg = document.getElementById('pixelGirlTiredImg');
-
+const reportDate = document.getElementById('reportDate');
+const reportLocation = document.getElementById('reportLocation');
+const reportDetail = document.getElementById('reportDetail');
 
 let noCounter = 0;
 let typingTimeout;
@@ -150,6 +152,8 @@ picnicOption.addEventListener('mouseover', () => {
 });
 
 cinemaOption.addEventListener('click', () => {
+    reportLocation.textContent = "Cinema";
+    reportLocation.classList.remove('d-none');
     changeExpression('normal');
     typeWriter("Great choice! I love the cinema!");
     secondStep.classList.add('d-none');
@@ -157,6 +161,8 @@ cinemaOption.addEventListener('click', () => {
 });
 
 sushiOption.addEventListener('click', () => {
+    reportLocation.textContent = "Sushi Place";
+    reportLocation.classList.remove('d-none');
     changeExpression('normal');
     typeWriter("Sushi is delicious! Let's go!");
     secondStep.classList.add('d-none');
@@ -170,6 +176,8 @@ nvmOption.addEventListener('click', () => {
 });
 
 picnicOption.addEventListener('click', () => {
+    reportLocation.textContent = "Picnic";
+    reportLocation.classList.remove('d-none');
     changeExpression('normal');
     typeWriter("A picnic sounds lovely! Let's do it!");
     secondStep.classList.add('d-none');
@@ -200,6 +208,9 @@ function thirdStepContent(choice) {
 }
 
 film1.addEventListener('click', () => {
+    reportDetail.textContent = "Film: " + film1.textContent;
+    reportDetail.classList.remove('d-none');
+    changeExpression('normal');
     typeWriter("Great choice! I love that film!");
     cinemaStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -207,6 +218,9 @@ film1.addEventListener('click', () => {
 });
 
 film2.addEventListener('click', () => {
+    reportDetail.textContent = "Film: " + film2.textContent;
+    reportDetail.classList.remove('d-none');
+    changeExpression('normal');
     typeWriter("Awesome! That film is so good!");
     cinemaStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -214,6 +228,9 @@ film2.addEventListener('click', () => {
 });
 
 sushi1.addEventListener('click', () => {
+    reportDetail.textContent = "Restaurant: " + sushi1.textContent;
+    reportDetail.classList.remove('d-none');
+    changeExpression('normal');
     typeWriter("Yum! That place has the best sushi!");
     sushiStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -221,6 +238,9 @@ sushi1.addEventListener('click', () => {
 });
 
 sushi2.addEventListener('click', () => {
+    reportDetail.textContent = "Restaurant: " + sushi2.textContent;
+    reportDetail.classList.remove('d-none');
+    changeExpression('normal');
     typeWriter("Great choice! I love that place!");
     sushiStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -228,6 +248,9 @@ sushi2.addEventListener('click', () => {
 });
 
 picnic1.addEventListener('click', () => {
+    reportDetail.textContent = "Location: " + picnic1.textContent;
+    reportDetail.classList.remove('d-none');
+    changeExpression('normal');
     typeWriter("That park is so beautiful! Great choice!");
     picnicStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -235,6 +258,9 @@ picnic1.addEventListener('click', () => {
 });
 
 picnic2.addEventListener('click', () => {
+    reportDetail.textContent = "Location: " + picnic2.textContent;
+    reportDetail.classList.remove('d-none');
+    changeExpression('normal');
     typeWriter("I love that spot! It's perfect for a picnic!");
     picnicStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -260,7 +286,7 @@ confirmBtn.addEventListener('click', (e) => {
     if (selectedDate < today) {
         changeExpression('shocked');
         typeWriter("Are you trying to set a date in the past? That's not gonna work!");
-        return; // Interrompiamo l'esecuzione se la data è passata
+        return; 
     }
     if (datePickerTimeValue < "10:00") {
         changeExpression('tired');
@@ -272,6 +298,8 @@ confirmBtn.addEventListener('click', (e) => {
         typeWriter("After 10:00 PM? That's a bit too late for me, I have to go to sleep early!");
         return;
     }
+    reportDate.textContent = "Date: " + datePickerValue + " at " + datePickerTimeValue;
+    reportDate.classList.remove('d-none');
     changeExpression('normal');
     typeWriter("Perfect! It's a date! See you then!");
 });
