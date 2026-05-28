@@ -11,6 +11,14 @@ const nvmOption = document.getElementById('nvmOption');
 const cinemaStep = document.getElementById('thirdStepCinema');
 const sushiStep = document.getElementById('thirdStepSushi');
 const picnicStep = document.getElementById('thirdStepPicnic');
+const film1 = document.getElementById('filmOption1');
+const film2 = document.getElementById('filmOption2');
+const sushi1 = document.getElementById('sushiOption1');
+const sushi2 = document.getElementById('sushiOption2');
+const picnic1 = document.getElementById('picnicOption1');
+const picnic2 = document.getElementById('picnicOption2');
+const fourthStep = document.getElementById('fourthStep');
+const confirmBtn = document.getElementById('confirmBtn');
 
 let noCounter = 0;
 let typingTimeout;
@@ -40,7 +48,7 @@ function typeWriter(text, index = 0) {
     if (index < text.length) {
         let currentChar = text.charAt(index);
         if (currentChar === " ") {
-            currentChar = "&nbsp;";
+            currentChar = " ";
         }
         speechBubble.innerHTML += currentChar;
         typingTimeout = setTimeout(() => {
@@ -82,7 +90,7 @@ nvmOption.addEventListener('mouseover', () => {
 
 cinemaOption.addEventListener('mouseover', () => {
     indecidedCounter++;
-    if (indecidedCounter % 3 === 0) {
+    if (indecidedCounter % 5 === 0) {
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
@@ -90,7 +98,7 @@ cinemaOption.addEventListener('mouseover', () => {
 
 sushiOption.addEventListener('mouseover', () => {
     indecidedCounter++;
-    if (indecidedCounter % 3 === 0) {
+    if (indecidedCounter % 5 === 0) {
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
@@ -98,7 +106,7 @@ sushiOption.addEventListener('mouseover', () => {
 
 picnicOption.addEventListener('mouseover', () => {
     indecidedCounter++;
-    if (indecidedCounter % 3 === 0) {
+    if (indecidedCounter % 5 === 0) {
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
@@ -127,7 +135,7 @@ picnicOption.addEventListener('click', () => {
 });
 
 // 1 = cinema, 2 = sushi, 3 = picnic
-function thirdStepContent(choice) { 
+function thirdStepContent(choice) {
     switch (choice) {
         case 1:
             typeWriter("Which film should we watch?");
@@ -143,7 +151,80 @@ function thirdStepContent(choice) {
             typeWriter("Where should we have the picnic?");
             questionDisplay.textContent = "Where should we have the picnic?";
             picnicStep.classList.remove('d-none');
+            break;
         default:
             return "";
     }
 }
+
+film1.addEventListener('click', () => {
+    typeWriter("Great choice! I love that film!");
+    cinemaStep.classList.add('d-none');
+    fourthStep.classList.remove('d-none');
+    questionDisplay.textContent = "When do you want to go?";
+});
+
+film2.addEventListener('click', () => {
+    typeWriter("Awesome! That film is so good!");
+    cinemaStep.classList.add('d-none');
+    fourthStep.classList.remove('d-none');
+    questionDisplay.textContent = "When do you want to go?";
+});
+
+sushi1.addEventListener('click', () => {
+    typeWriter("Yum! That place has the best sushi!");
+    sushiStep.classList.add('d-none');
+    fourthStep.classList.remove('d-none');
+    questionDisplay.textContent = "When do you want to go?";
+});
+
+sushi2.addEventListener('click', () => {
+    typeWriter("Great choice! I love that place!");
+    sushiStep.classList.add('d-none');
+    fourthStep.classList.remove('d-none');
+    questionDisplay.textContent = "When do you want to go?";
+});
+
+picnic1.addEventListener('click', () => {
+    typeWriter("That park is so beautiful! Great choice!");
+    picnicStep.classList.add('d-none');
+    fourthStep.classList.remove('d-none');
+    questionDisplay.textContent = "When do you want to go?";
+});
+
+picnic2.addEventListener('click', () => {
+    typeWriter("I love that spot! It's perfect for a picnic!");
+    picnicStep.classList.add('d-none');
+    fourthStep.classList.remove('d-none');
+    questionDisplay.textContent = "When do you want to go?";
+});
+
+confirmBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const datePickerValue = document.getElementById('datePicker').value;
+    const datePickerTimeValue = document.getElementById('timePicker').value;
+
+    if (datePickerValue === "" || datePickerTimeValue === "") {
+        typeWriter("Aren't you forgetting something?");
+        return;
+    }
+
+    const selectedDate = new Date(datePickerValue);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
+        typeWriter("Are you trying to set a date in the past? That's not gonna work!");
+        return; // Interrompiamo l'esecuzione se la data è passata
+    }
+    if (datePickerTimeValue < "10:00") {
+        typeWriter("Mmm, before 10:00 AM? I'm probably still asleep... Let's do it later!");
+        return;
+    }
+    if (datePickerTimeValue > "22:00") {
+        typeWriter("After 10:00 PM? That's a bit too late for me, I have to go to sleep early!");
+        return;
+    }
+    typeWriter("Perfect! It's a date! See you then!");
+});
