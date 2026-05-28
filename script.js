@@ -57,6 +57,18 @@ function changeExpression(expression) {
     }
 }
 
+function shakeActiveCharacter() {
+    const activeImg = document.querySelector('.character-img:not(.d-none)');
+
+    if (activeImg) {
+        activeImg.classList.add('shake-effect');
+
+        setTimeout(() => {
+            activeImg.classList.remove('shake-effect');
+        }, 500);
+    }
+}
+
 function typeWriter(text, index = 0) {
     if (index === 0) {
         speechBubble.innerHTML = "";
@@ -153,6 +165,7 @@ sushiOption.addEventListener('click', () => {
 
 nvmOption.addEventListener('click', () => {
     changeExpression('shocked');
+    shakeActiveCharacter();
     typeWriter("NO! YOU CAN'T DO THAT! YOU PROMISED!");
 });
 
