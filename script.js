@@ -25,6 +25,11 @@ const pixelGirlTiredImg = document.getElementById('pixelGirlTiredImg');
 const reportDate = document.getElementById('reportDate');
 const reportLocation = document.getElementById('reportLocation');
 const reportDetail = document.getElementById('reportDetail');
+const finishBtn = document.getElementById('finishBtn'); 
+const gameOver = document.getElementById('gameOver');
+const winScreen = document.getElementById('win');
+const characterPanel = document.querySelector('.character-panel');  
+const reportPanel = document.querySelector('.report-panel');
 
 let noCounter = 0;
 let typingTimeout;
@@ -299,5 +304,15 @@ confirmBtn.addEventListener('click', (e) => {
     reportDate.textContent = "Date: " + datePickerValue + " at " + datePickerTimeValue;
     reportDate.classList.remove('d-none');
     changeExpression('normal');
-    typeWriter("Perfect! It's a date! See you then!");
+    typeWriter("Perfect!");
+    fourthStep.classList.add('d-none');
+    questionDisplay.classList.add('d-none');
+    confirmBtn.classList.add('d-none');
+    finishBtn.classList.remove('d-none');
+});
+
+finishBtn.addEventListener('click', () => {
+    winScreen.classList.remove('d-none');
+    characterPanel.classList.add('d-none');
+    reportPanel.classList.add('d-none');
 });
