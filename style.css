@@ -32,12 +32,12 @@ body {
     padding: 30px;
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
     width: 340px;
+    height: 370px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    justify-content: center;
-    gap: 20px;
+    justify-content: flex-end; 
+    gap: 5px;
 }
 
 .report-panel {
@@ -47,10 +47,11 @@ body {
     padding: 30px;
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
     width: 340px;
+    height: 370px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 20px;
 }
 
@@ -62,6 +63,7 @@ body {
     padding: 30px;
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
     width: 440px;
+    height: 370px;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -109,9 +111,11 @@ h1 {
     overflow-wrap: break-word;
     text-align: center;
     animation: floatAnimation 3s ease-in-out infinite;
+    margin-bottom: -20px;
 }
 
 .speech-bubble::after {
+    bottom: -12px;
     content: '';
     position: absolute;
     bottom: -12px;

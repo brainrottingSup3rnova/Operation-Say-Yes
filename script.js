@@ -115,8 +115,6 @@ yesBtn.addEventListener('click', () => {
     questionDisplay.textContent = "Where do you want to go?";
     firstStep.classList.add('d-none');
     secondStep.classList.remove('d-none');
-
-    typeWriter("Where shall we meet?");
 });
 
 nvmOption.addEventListener('mouseover', () => {
