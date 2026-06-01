@@ -189,6 +189,7 @@ picnicOption.addEventListener('click', () => {
 
 // 1 = cinema, 2 = sushi, 3 = picnic
 function thirdStepContent(choice) {
+    indecidedCounter = 0;
     switch (choice) {
         case 1:
             typeWriter("Which film should we watch?");
@@ -210,6 +211,15 @@ function thirdStepContent(choice) {
     }
 }
 
+film1.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 3 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
+});
+
 film1.addEventListener('click', () => {
     reportDetail.textContent = "Film: " + film1.textContent;
     reportDetail.classList.remove('d-none');
@@ -218,6 +228,15 @@ film1.addEventListener('click', () => {
     cinemaStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
     questionDisplay.textContent = "When do you want to go?";
+});
+
+film2.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 3 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
 });
 
 film2.addEventListener('click', () => {
@@ -230,6 +249,15 @@ film2.addEventListener('click', () => {
     questionDisplay.textContent = "When do you want to go?";
 });
 
+sushi1.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 3 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
+});
+
 sushi1.addEventListener('click', () => {
     reportDetail.textContent = "Restaurant: " + sushi1.textContent;
     reportDetail.classList.remove('d-none');
@@ -238,6 +266,15 @@ sushi1.addEventListener('click', () => {
     sushiStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
     questionDisplay.textContent = "When do you want to go?";
+});
+
+sushi2.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 3 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
 });
 
 sushi2.addEventListener('click', () => {
@@ -250,6 +287,15 @@ sushi2.addEventListener('click', () => {
     questionDisplay.textContent = "When do you want to go?";
 });
 
+picnic1.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 3 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
+});
+
 picnic1.addEventListener('click', () => {
     reportDetail.textContent = "Location: " + picnic1.textContent;
     reportDetail.classList.remove('d-none');
@@ -258,6 +304,15 @@ picnic1.addEventListener('click', () => {
     picnicStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
     questionDisplay.textContent = "When do you want to go?";
+});
+
+picnic2.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 3 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
 });
 
 picnic2.addEventListener('click', () => {
