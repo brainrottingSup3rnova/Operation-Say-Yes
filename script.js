@@ -25,10 +25,10 @@ const pixelGirlTiredImg = document.getElementById('pixelGirlTiredImg');
 const reportDate = document.getElementById('reportDate');
 const reportLocation = document.getElementById('reportLocation');
 const reportDetail = document.getElementById('reportDetail');
-const finishBtn = document.getElementById('finishBtn'); 
+const finishBtn = document.getElementById('finishBtn');
 const gameOver = document.getElementById('gameOver');
 const winScreen = document.getElementById('win');
-const characterPanel = document.querySelector('.character-panel');  
+const characterPanel = document.querySelector('.character-panel');
 const reportPanel = document.querySelector('.report-panel');
 const status = document.getElementById('statusText');
 
@@ -46,7 +46,7 @@ const noReactions = [
 
 const indecidedReactions = [
     "Don't make me wait forever!",
-    "A little indecided, aren't we?",
+    "A little indecided, are we?",
     "Do you like...need help?",
     "Are you gonna choose or what?",
 ];
@@ -65,6 +65,9 @@ function changeExpression(expression) {
     } else if (expression === 'tired') {
         pixelGirlTiredImg.classList.remove('d-none');
         status.textContent = "Tired";
+    } else if (expression === 'happy') {
+        pixelGirlImg.classList.remove('d-none');
+        status.textContent = "Happy";
     }
 }
 
@@ -77,6 +80,18 @@ function shakeActiveCharacter() {
         setTimeout(() => {
             activeImg.classList.remove('shake-effect');
         }, 500);
+    }
+}
+
+function jumpActiveCharacter() {
+    const activeImg = document.querySelector('.character-img:not(.d-none)');
+
+    if (activeImg) {
+        activeImg.classList.add('jump-effect');
+
+        setTimeout(() => {
+            activeImg.classList.remove('jump-effect');
+        }, 400);
     }
 }
 
@@ -117,6 +132,7 @@ noBtn.addEventListener('mouseover', () => {
 });
 
 yesBtn.addEventListener('click', () => {
+    jumpActiveCharacter();
     changeExpression('normal');
     typeWriter("Yay! I knew you'd say yes!");
     yesBtn.classList.add('d-none');
@@ -162,6 +178,7 @@ cinemaOption.addEventListener('click', () => {
     reportLocation.textContent = "Cinema";
     reportLocation.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("Great choice! I love the cinema!");
     secondStep.classList.add('d-none');
     thirdStepContent(1);
@@ -171,6 +188,7 @@ sushiOption.addEventListener('click', () => {
     reportLocation.textContent = "Sushi Place";
     reportLocation.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("Sushi is delicious! Let's go!");
     secondStep.classList.add('d-none');
     thirdStepContent(2);
@@ -186,6 +204,7 @@ picnicOption.addEventListener('click', () => {
     reportLocation.textContent = "Picnic";
     reportLocation.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("A picnic sounds lovely! Let's do it!");
     secondStep.classList.add('d-none');
     thirdStepContent(3);
@@ -228,6 +247,7 @@ film1.addEventListener('click', () => {
     reportDetail.textContent = "Film: " + film1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("Great choice! I love that film!");
     cinemaStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -247,6 +267,7 @@ film2.addEventListener('click', () => {
     reportDetail.textContent = "Film: " + film2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("Awesome! That film is so good!");
     cinemaStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -266,6 +287,7 @@ sushi1.addEventListener('click', () => {
     reportDetail.textContent = "Restaurant: " + sushi1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("Yum! That place has the best sushi!");
     sushiStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -285,6 +307,7 @@ sushi2.addEventListener('click', () => {
     reportDetail.textContent = "Restaurant: " + sushi2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("Great choice! I love that place!");
     sushiStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -304,6 +327,7 @@ picnic1.addEventListener('click', () => {
     reportDetail.textContent = "Location: " + picnic1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("That park is so beautiful! Great choice!");
     picnicStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -323,6 +347,7 @@ picnic2.addEventListener('click', () => {
     reportDetail.textContent = "Location: " + picnic2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
+    jumpActiveCharacter();
     typeWriter("I love that spot! It's perfect for a picnic!");
     picnicStep.classList.add('d-none');
     fourthStep.classList.remove('d-none');
@@ -348,7 +373,7 @@ confirmBtn.addEventListener('click', (e) => {
     if (selectedDate < today) {
         changeExpression('shocked');
         typeWriter("Are you trying to set a date in the past? That's not gonna work!");
-        return; 
+        return;
     }
     if (datePickerTimeValue < "10:00") {
         changeExpression('tired');
@@ -362,7 +387,8 @@ confirmBtn.addEventListener('click', (e) => {
     }
     reportDate.textContent = "Date: " + datePickerValue + " at " + datePickerTimeValue;
     reportDate.classList.remove('d-none');
-    changeExpression('normal');
+    jumpActiveCharacter();
+    changeExpression('happy');
     typeWriter("Perfect!");
     fourthStep.classList.add('d-none');
     questionDisplay.classList.add('d-none');
