@@ -30,6 +30,7 @@ const gameOver = document.getElementById('gameOver');
 const winScreen = document.getElementById('win');
 const characterPanel = document.querySelector('.character-panel');  
 const reportPanel = document.querySelector('.report-panel');
+const status = document.getElementById('statusText');
 
 let noCounter = 0;
 let typingTimeout;
@@ -57,10 +58,13 @@ function changeExpression(expression) {
 
     if (expression === 'normal') {
         pixelGirlImg.classList.remove('d-none');
+        status.textContent = "Neutral";
     } else if (expression === 'shocked') {
         pixelGirlShockedImg.classList.remove('d-none');
+        status.textContent = "Shocked";
     } else if (expression === 'tired') {
         pixelGirlTiredImg.classList.remove('d-none');
+        status.textContent = "Tired";
     }
 }
 
