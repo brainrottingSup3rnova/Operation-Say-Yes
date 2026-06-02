@@ -117,6 +117,25 @@ function typeWriter(text, index = 0) {
     }
 }
 
+function gameOverSequence() {
+    changeExpression('tired');
+    questionDisplay.classList.add('d-none');
+    typeWriter("You know what? Fine. I'm outta here!");
+
+    setTimeout(() => {
+        speechBubble.classList.add('d-none');
+        characterName.classList.add('d-none');
+        character.classList.add('walk-out-effect');
+    }, 2500);
+
+    setTimeout(() => {
+        statusBar.classList.add('d-none');
+        characterPanel.classList.add('d-none');
+        reportPanel.classList.add('d-none');
+        gameOver.classList.remove('d-none');
+    }, 5000);
+}
+
 noBtn.addEventListener('mouseover', () => {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -132,6 +151,10 @@ noBtn.addEventListener('mouseover', () => {
         changeExpression('shocked');
         const reaction = noReactions[Math.floor(Math.random() * noReactions.length)];
         typeWriter(reaction);
+    }
+    if (noCounter === 20) {
+        firstStep.classList.add('d-none');
+        gameOverSequence();
     }
 });
 
@@ -204,25 +227,9 @@ nvmOption.addEventListener('click', () => {
     shakeActiveCharacter();
     typeWriter("NO! YOU CAN'T DO THAT! YOU PROMISED!");
 
-    if(nvmCounter === 5)
-    {
-        changeExpression('tired');
+    if (nvmCounter === 5) {
         secondStep.classList.add('d-none');
-        questionDisplay.classList.add('d-none');
-        typeWriter("You know what? Fine. I'm outta here!");
-        
-        setTimeout(() => {
-            speechBubble.classList.add('d-none');
-            characterName.classList.add('d-none');
-            character.classList.add('walk-out-effect');
-        }, 2500);
-
-        setTimeout(() => {
-            statusBar.classList.add('d-none');
-            characterPanel.classList.add('d-none');
-            reportPanel.classList.add('d-none');
-            gameOver.classList.remove('d-none');
-        }, 5000);
+        gameOverSequence();
     }
 });
 
@@ -427,4 +434,12 @@ finishBtn.addEventListener('click', () => {
     statusBar.classList.add('d-none');
     characterPanel.classList.add('d-none');
     reportPanel.classList.add('d-none');
+});
+
+restartBtn.addEventListener('click', () => {
+    window.location.reload();
+});
+
+retryBtn.addEventListener('click', () => {
+    window.location.reload();
 });
