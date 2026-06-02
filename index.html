@@ -11,7 +11,7 @@
 
 <body>
     <div class="game-container">
-        <div class="status-row-panel">
+        <div class="status-row-panel" id="statusBar">
             <h1 class="character-status" id="characterStatus">
                 Status: <span id="statusText">Neutral</span>
             </h1>
@@ -35,12 +35,18 @@
 
             <div class="container">
                 <div id="win" class="d-none">
-                    <h1>You win!</h1>
+                    <img src="assets/pixel_heart.png" alt="Heart Icon" class="mx-auto mb-2 option-icon"
+                        style="height: 100px; object-fit: contain;">
+                    <h1 class="win-text">You win!</h1>
                     <p>Congrats! You are a true romantic</p>
+                    <button id="restartBtn" class="btn btn-success mt-3">Restart</button>
                 </div>
                 <div id="gameOver" class="d-none">
-                    <h1>Game Over</h1>
+                    <img src="assets/pixel_broken_heart.png" alt="Broken Heart Icon" class="mx-auto mb-2 option-icon"
+                        style="height: 150px; object-fit: contain;">
+                    <h1 class="gameover-text">Game Over</h1>
                     <p>Dude bfr...it's wasnt that hard</p>
+                    <button id="retryBtn" class="btn btn-danger mt-3">Retry</button>
                 </div>
                 <h1 id="questionDisplayer">Would you like to go on a date with me?</h1>
                 <div id="firstStep">

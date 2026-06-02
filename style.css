@@ -171,6 +171,16 @@ h1 {
     width: 100%;
 }
 
+.win-text {
+    font-size: 14px;
+    color: #2ecc71;
+}
+
+.gameover-text {
+    font-size: 14px;
+    color: #ff4757;
+}
+
 .btn {
     height: 45px;
     width: 110px;
@@ -188,19 +198,29 @@ h1 {
 }
 
 #yesBtn,
-#confirmBtn {
+#confirmBtn,
+#finishBtn,
+#restartBtn {
     background-color: #2ecc71;
     color: white;
 }
 
 #yesBtn:hover,
-#confirmBtn:hover {
+#confirmBtn:hover,
+#finishBtn:hover,
+#restartBtn:hover {
     background-color: #27ae60;
 }
 
-#noBtn {
+#noBtn,
+#retryBtn {
     background-color: #ff4757;
     color: white;
+}
+
+#noBtn:hover,
+#retryBtn:hover {
+    background-color: #e84118;
 }
 
 .card:hover {

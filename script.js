@@ -30,6 +30,7 @@ const gameOver = document.getElementById('gameOver');
 const winScreen = document.getElementById('win');
 const characterPanel = document.querySelector('.character-panel');
 const reportPanel = document.querySelector('.report-panel');
+const statusBar = document.getElementById('statusBar');
 const status = document.getElementById('statusText');
 const character = document.querySelector('.character-sprite-wrapper');
 const characterName = document.querySelector('.character-name');
@@ -214,13 +215,14 @@ nvmOption.addEventListener('click', () => {
             speechBubble.classList.add('d-none');
             characterName.classList.add('d-none');
             character.classList.add('walk-out-effect');
-        }, 2000);
+        }, 2500);
 
         setTimeout(() => {
+            statusBar.classList.add('d-none');
             characterPanel.classList.add('d-none');
             reportPanel.classList.add('d-none');
             gameOver.classList.remove('d-none');
-        }, 3500);
+        }, 5000);
     }
 });
 
@@ -422,6 +424,7 @@ confirmBtn.addEventListener('click', (e) => {
 
 finishBtn.addEventListener('click', () => {
     winScreen.classList.remove('d-none');
+    statusBar.classList.add('d-none');
     characterPanel.classList.add('d-none');
     reportPanel.classList.add('d-none');
 });
