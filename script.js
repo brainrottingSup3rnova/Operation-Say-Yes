@@ -31,10 +31,13 @@ const winScreen = document.getElementById('win');
 const characterPanel = document.querySelector('.character-panel');
 const reportPanel = document.querySelector('.report-panel');
 const status = document.getElementById('statusText');
+const character = document.querySelector('.character-sprite-wrapper');
+const characterName = document.querySelector('.character-name');
 
 let noCounter = 0;
 let typingTimeout;
 let indecidedCounter = 0;
+let nvmCounter = 0;
 
 const noReactions = [
     "Why do you keep trying to say no?",
@@ -195,9 +198,30 @@ sushiOption.addEventListener('click', () => {
 });
 
 nvmOption.addEventListener('click', () => {
+    nvmCounter++;
     changeExpression('shocked');
     shakeActiveCharacter();
     typeWriter("NO! YOU CAN'T DO THAT! YOU PROMISED!");
+
+    if(nvmCounter === 5)
+    {
+        changeExpression('tired');
+        secondStep.classList.add('d-none');
+        questionDisplay.classList.add('d-none');
+        typeWriter("You know what? Fine. I'm outta here!");
+        
+        setTimeout(() => {
+            speechBubble.classList.add('d-none');
+            characterName.classList.add('d-none');
+            character.classList.add('walk-out-effect');
+        }, 2000);
+
+        setTimeout(() => {
+            characterPanel.classList.add('d-none');
+            reportPanel.classList.add('d-none');
+            gameOver.classList.remove('d-none');
+        }, 3500);
+    }
 });
 
 picnicOption.addEventListener('click', () => {

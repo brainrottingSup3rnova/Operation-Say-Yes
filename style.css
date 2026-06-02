@@ -283,3 +283,20 @@ h1 {
         padding: 20px;
     }
 }
+
+@keyframes walkOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-150vw);
+        opacity: 0;
+    }
+}
+
+.walk-out-effect {
+    animation: walkOut 5.0s forwards ease-in-out;
+    pointer-events: none;
+}
