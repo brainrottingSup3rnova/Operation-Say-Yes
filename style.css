@@ -223,6 +223,12 @@ h1 {
     background-color: #e84118;
 }
 
+#finishBtn,
+#ghostBtn {
+    height: 45px;
+    width: 230px;
+}
+
 .card:hover {
     cursor: pointer;
     border: #000000 solid 2px !important;

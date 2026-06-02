@@ -34,6 +34,7 @@ const statusBar = document.getElementById('statusBar');
 const status = document.getElementById('statusText');
 const character = document.querySelector('.character-sprite-wrapper');
 const characterName = document.querySelector('.character-name');
+const ghostBtn = document.getElementById('ghostBtn');
 
 let noCounter = 0;
 let typingTimeout;
@@ -427,6 +428,7 @@ confirmBtn.addEventListener('click', (e) => {
     questionDisplay.classList.add('d-none');
     confirmBtn.classList.add('d-none');
     finishBtn.classList.remove('d-none');
+    ghostBtn.classList.remove('d-none');
 });
 
 finishBtn.addEventListener('click', () => {
@@ -435,6 +437,19 @@ finishBtn.addEventListener('click', () => {
     characterPanel.classList.add('d-none');
     reportPanel.classList.add('d-none');
 });
+
+ghostBtn.addEventListener('mouseover', () => {
+    changeExpression('shocked');
+    shakeActiveCharacter();
+    typeWriter("Wait- What does that mean?! Think again!");
+});
+
+ghostBtn.addEventListener('click', () => {
+    finishBtn.classList.add('d-none');
+    ghostBtn.classList.add('d-none');
+    gameOverSequence();
+});
+
 
 restartBtn.addEventListener('click', () => {
     window.location.reload();
