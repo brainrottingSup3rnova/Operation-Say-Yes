@@ -1,46 +1,71 @@
+//all the elements we need to interact with
+//the question displayer
+const questionDisplay = document.getElementById('questionDisplayer');
+//buttons
 const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
+const confirmBtn = document.getElementById('confirmBtn');
+const ghostBtn = document.getElementById('ghostBtn');
+const finishBtn = document.getElementById('finishBtn');
+
+//the elements of the girl and the speech bubble
+const characterPanel = document.querySelector('.character-panel');
+const pixelGirlImg = document.getElementById('pixelGirlImg');
+const pixelGirlShockedImg = document.getElementById('pixelGirlShockedImg');
+const pixelGirlTiredImg = document.getElementById('pixelGirlTiredImg');
 const speechBubble = document.getElementById('speechBubble');
-const questionDisplay = document.getElementById('questionDisplayer');
+const character = document.querySelector('.character-sprite-wrapper');
+const characterName = document.querySelector('.character-name');
+
+//the steps (not the third cause it has 3 different versions)
 const firstStep = document.getElementById('firstStep');
 const secondStep = document.getElementById('secondStep');
+const fourthStep = document.getElementById('fourthStep');
+
+//the options of the second step
 const cinemaOption = document.getElementById('cinemaOption');
 const sushiOption = document.getElementById('sushiOption');
 const picnicOption = document.getElementById('picnicOption');
 const nvmOption = document.getElementById('nvmOption');
+
+//the scenarios of the third step and their options
+//scenario 1: cinema
 const cinemaStep = document.getElementById('thirdStepCinema');
-const sushiStep = document.getElementById('thirdStepSushi');
-const picnicStep = document.getElementById('thirdStepPicnic');
 const film1 = document.getElementById('filmOption1');
 const film2 = document.getElementById('filmOption2');
+
+//scenario 2: sushi
+const sushiStep = document.getElementById('thirdStepSushi');
 const sushi1 = document.getElementById('sushiOption1');
 const sushi2 = document.getElementById('sushiOption2');
+
+//scenario 3: picnic
+const picnicStep = document.getElementById('thirdStepPicnic');
 const picnic1 = document.getElementById('picnicOption1');
 const picnic2 = document.getElementById('picnicOption2');
-const fourthStep = document.getElementById('fourthStep');
-const confirmBtn = document.getElementById('confirmBtn');
-const pixelGirlImg = document.getElementById('pixelGirlImg');
-const pixelGirlShockedImg = document.getElementById('pixelGirlShockedImg');
-const pixelGirlTiredImg = document.getElementById('pixelGirlTiredImg');
+
+//report panel and its elements
 const reportDate = document.getElementById('reportDate');
 const reportLocation = document.getElementById('reportLocation');
 const reportDetail = document.getElementById('reportDetail');
-const finishBtn = document.getElementById('finishBtn');
-const gameOver = document.getElementById('gameOver');
-const winScreen = document.getElementById('win');
-const characterPanel = document.querySelector('.character-panel');
 const reportPanel = document.querySelector('.report-panel');
+
+//status bar and its elements
 const statusBar = document.getElementById('statusBar');
 const status = document.getElementById('statusText');
-const character = document.querySelector('.character-sprite-wrapper');
-const characterName = document.querySelector('.character-name');
-const ghostBtn = document.getElementById('ghostBtn');
 
+//win and lose screens
+const gameOver = document.getElementById('gameOver');
+const winScreen = document.getElementById('win');
+
+//all the counters and timers we need
 let noCounter = 0;
-let typingTimeout;
 let indecidedCounter = 0;
 let nvmCounter = 0;
 
+let typingTimeout;
+
+//the reactions for the no button and the indecided options
 const noReactions = [
     "Why do you keep trying to say no?",
     "Do you hate me that much?",
@@ -56,9 +81,12 @@ const indecidedReactions = [
     "Are you gonna choose or what?",
 ];
 
-// 1 = cinema, 2 = sushi, 3 = picnic
+//the functions to manage the game logic and the character's reactions
+
+//manages all the scenarios of the third step
 function thirdStepContent(choice) {
     indecidedCounter = 0;
+    // 1 = cinema, 2 = sushi, 3 = picnic
     switch (choice) {
         case 1:
             typeWriter("I love going to the cinema!");
@@ -80,6 +108,7 @@ function thirdStepContent(choice) {
     }
 }
 
+//changes the expression of the character based on the choices of the player
 function changeExpression(expression) {
     pixelGirlImg.classList.add('d-none');
     pixelGirlShockedImg.classList.add('d-none');
@@ -100,6 +129,7 @@ function changeExpression(expression) {
     }
 }
 
+//shakes the image of the character when the player chooses a certain oprtion
 function shakeActiveCharacter() {
     const activeImg = document.querySelector('.character-img:not(.d-none)');
 
@@ -112,6 +142,7 @@ function shakeActiveCharacter() {
     }
 }
 
+//makes the character jump when the player chooses a certain option
 function jumpActiveCharacter() {
     const activeImg = document.querySelector('.character-img:not(.d-none)');
 
@@ -124,6 +155,7 @@ function jumpActiveCharacter() {
     }
 }
 
+//types all the reaction of the character in real time
 function typeWriter(text, index = 0) {
     if (index === 0) {
         speechBubble.innerHTML = "";
@@ -142,6 +174,7 @@ function typeWriter(text, index = 0) {
     }
 }
 
+//manages the gameover sequence for all the bad scenarios
 function gameOverSequence() {
     changeExpression('tired');
     questionDisplay.classList.add('d-none');
@@ -161,6 +194,7 @@ function gameOverSequence() {
     }, 5000);
 }
 
+//manages the win sequence for the good scenario
 function winSequence() {
     ghostBtn.classList.add('d-none');
     finishBtn.classList.add('d-none');
@@ -176,6 +210,9 @@ function winSequence() {
     }, 3000);
 }
 
+//the event listeners for all the buttons and options of the game
+
+//first step: no button and yes button
 noBtn.addEventListener('mouseover', () => {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -197,7 +234,6 @@ noBtn.addEventListener('mouseover', () => {
         gameOverSequence();
     }
 });
-
 yesBtn.addEventListener('click', () => {
     jumpActiveCharacter();
     changeExpression('normal');
@@ -209,11 +245,9 @@ yesBtn.addEventListener('click', () => {
     secondStep.classList.remove('d-none');
 });
 
-nvmOption.addEventListener('mouseover', () => {
-    changeExpression('shocked');
-    typeWriter("no- you won't click it, right? right??");
-});
+//second step: the 4 options
 
+//option number 1: "cinema"
 cinemaOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
@@ -222,25 +256,6 @@ cinemaOption.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
-sushiOption.addEventListener('mouseover', () => {
-    indecidedCounter++;
-    if (indecidedCounter % 5 === 0) {
-        changeExpression('tired');
-        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
-        typeWriter(reaction);
-    }
-});
-
-picnicOption.addEventListener('mouseover', () => {
-    indecidedCounter++;
-    if (indecidedCounter % 5 === 0) {
-        changeExpression('shocked');
-        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
-        typeWriter(reaction);
-    }
-});
-
 cinemaOption.addEventListener('click', () => {
     reportLocation.textContent = "Cinema";
     reportLocation.classList.remove('d-none');
@@ -251,6 +266,15 @@ cinemaOption.addEventListener('click', () => {
     thirdStepContent(1);
 });
 
+//option number 2: "sushi"
+sushiOption.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 5 === 0) {
+        changeExpression('tired');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
+});
 sushiOption.addEventListener('click', () => {
     reportLocation.textContent = "Sushi Place";
     reportLocation.classList.remove('d-none');
@@ -261,6 +285,30 @@ sushiOption.addEventListener('click', () => {
     thirdStepContent(2);
 });
 
+//option number 3: "picnic"
+picnicOption.addEventListener('mouseover', () => {
+    indecidedCounter++;
+    if (indecidedCounter % 5 === 0) {
+        changeExpression('shocked');
+        const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
+        typeWriter(reaction);
+    }
+});
+picnicOption.addEventListener('click', () => {
+    reportLocation.textContent = "Picnic";
+    reportLocation.classList.remove('d-none');
+    changeExpression('normal');
+    jumpActiveCharacter();
+    typeWriter("A picnic sounds lovely! Let's do it!");
+    secondStep.classList.add('d-none');
+    thirdStepContent(3);
+});
+
+//option number 4: "nevermind"
+nvmOption.addEventListener('mouseover', () => {
+    changeExpression('shocked');
+    typeWriter("no- you won't click it, right? right??");
+});
 nvmOption.addEventListener('click', () => {
     nvmCounter++;
     changeExpression('shocked');
@@ -273,17 +321,9 @@ nvmOption.addEventListener('click', () => {
     }
 });
 
-picnicOption.addEventListener('click', () => {
-    reportLocation.textContent = "Picnic";
-    reportLocation.classList.remove('d-none');
-    changeExpression('normal');
-    jumpActiveCharacter();
-    typeWriter("A picnic sounds lovely! Let's do it!");
-    secondStep.classList.add('d-none');
-    thirdStepContent(3);
-});
+//third step: the different options for each scenario
 
-
+//scenario 1: cinema option
 film1.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
@@ -292,7 +332,6 @@ film1.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
 film1.addEventListener('click', () => {
     reportDetail.textContent = "Film: " + film1.textContent;
     reportDetail.classList.remove('d-none');
@@ -312,7 +351,6 @@ film2.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
 film2.addEventListener('click', () => {
     reportDetail.textContent = "Film: " + film2.textContent;
     reportDetail.classList.remove('d-none');
@@ -324,6 +362,7 @@ film2.addEventListener('click', () => {
     questionDisplay.textContent = "When do you want to go?";
 });
 
+//scenario 2: sushi option
 sushi1.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
@@ -332,7 +371,6 @@ sushi1.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
 sushi1.addEventListener('click', () => {
     reportDetail.textContent = "Restaurant: " + sushi1.textContent;
     reportDetail.classList.remove('d-none');
@@ -352,7 +390,6 @@ sushi2.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
 sushi2.addEventListener('click', () => {
     reportDetail.textContent = "Restaurant: " + sushi2.textContent;
     reportDetail.classList.remove('d-none');
@@ -364,6 +401,7 @@ sushi2.addEventListener('click', () => {
     questionDisplay.textContent = "When do you want to go?";
 });
 
+//scenario 3: picnic option
 picnic1.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
@@ -372,7 +410,6 @@ picnic1.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
 picnic1.addEventListener('click', () => {
     reportDetail.textContent = "Location: " + picnic1.textContent;
     reportDetail.classList.remove('d-none');
@@ -392,7 +429,6 @@ picnic2.addEventListener('mouseover', () => {
         typeWriter(reaction);
     }
 });
-
 picnic2.addEventListener('click', () => {
     reportDetail.textContent = "Location: " + picnic2.textContent;
     reportDetail.classList.remove('d-none');
@@ -404,6 +440,7 @@ picnic2.addEventListener('click', () => {
     questionDisplay.textContent = "When do you want to go?";
 });
 
+//fourth step: choosing the date and time of the date and confirming it
 confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -447,27 +484,29 @@ confirmBtn.addEventListener('click', (e) => {
     ghostBtn.classList.remove('d-none');
 });
 
+//the final choice: ghost or go
+
+//the "go on a date" option
 finishBtn.addEventListener('click', () => {
     winSequence();
 });
 
+//the "ghost" option
 ghostBtn.addEventListener('mouseover', () => {
     changeExpression('shocked');
     shakeActiveCharacter();
     typeWriter("Wait- What does that mean?! Think again!");
 });
-
 ghostBtn.addEventListener('click', () => {
     finishBtn.classList.add('d-none');
     ghostBtn.classList.add('d-none');
     gameOverSequence();
 });
 
-
+//the buttons to restart the game on the win and lose screens
 restartBtn.addEventListener('click', () => {
     window.location.reload();
 });
-
 retryBtn.addEventListener('click', () => {
     window.location.reload();
 });
