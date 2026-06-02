@@ -215,17 +215,17 @@ function thirdStepContent(choice) {
     indecidedCounter = 0;
     switch (choice) {
         case 1:
-            typeWriter("Which film should we watch?");
+            typeWriter("I love going to the cinema!");
             questionDisplay.textContent = "Which film do you want to watch?";
             cinemaStep.classList.remove('d-none');
             break;
         case 2:
-            typeWriter("Which sushi place should we go to?");
+            typeWriter("Yummy! I've been craving sushi since forever!!");
             questionDisplay.textContent = "Which sushi place do you want to go to?";
             sushiStep.classList.remove('d-none');
             break;
         case 3:
-            typeWriter("Where should we have the picnic?");
+            typeWriter("A picnic sounds lovely! Let's do it!");
             questionDisplay.textContent = "Where should we have the picnic?";
             picnicStep.classList.remove('d-none');
             break;
