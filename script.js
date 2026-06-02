@@ -56,6 +56,30 @@ const indecidedReactions = [
     "Are you gonna choose or what?",
 ];
 
+// 1 = cinema, 2 = sushi, 3 = picnic
+function thirdStepContent(choice) {
+    indecidedCounter = 0;
+    switch (choice) {
+        case 1:
+            typeWriter("I love going to the cinema!");
+            questionDisplay.textContent = "Which film do you want to watch?";
+            cinemaStep.classList.remove('d-none');
+            break;
+        case 2:
+            typeWriter("Yummy! I've been craving sushi since forever!!");
+            questionDisplay.textContent = "Which sushi place do you want to go to?";
+            sushiStep.classList.remove('d-none');
+            break;
+        case 3:
+            typeWriter("A picnic sounds lovely! Let's do it!");
+            questionDisplay.textContent = "Where should we have the picnic?";
+            picnicStep.classList.remove('d-none');
+            break;
+        default:
+            return "";
+    }
+}
+
 function changeExpression(expression) {
     pixelGirlImg.classList.add('d-none');
     pixelGirlShockedImg.classList.add('d-none');
@@ -135,6 +159,21 @@ function gameOverSequence() {
         reportPanel.classList.add('d-none');
         gameOver.classList.remove('d-none');
     }, 5000);
+}
+
+function winSequence() {
+    ghostBtn.classList.add('d-none');
+    finishBtn.classList.add('d-none');
+    changeExpression('happy');
+    questionDisplay.classList.add('d-none');
+    typeWriter("Yay! I can't wait for our date!");
+
+    setTimeout(() => {
+        winScreen.classList.remove('d-none');
+        statusBar.classList.add('d-none');
+        characterPanel.classList.add('d-none');
+        reportPanel.classList.add('d-none');
+    }, 3000);
 }
 
 noBtn.addEventListener('mouseover', () => {
@@ -244,29 +283,6 @@ picnicOption.addEventListener('click', () => {
     thirdStepContent(3);
 });
 
-// 1 = cinema, 2 = sushi, 3 = picnic
-function thirdStepContent(choice) {
-    indecidedCounter = 0;
-    switch (choice) {
-        case 1:
-            typeWriter("I love going to the cinema!");
-            questionDisplay.textContent = "Which film do you want to watch?";
-            cinemaStep.classList.remove('d-none');
-            break;
-        case 2:
-            typeWriter("Yummy! I've been craving sushi since forever!!");
-            questionDisplay.textContent = "Which sushi place do you want to go to?";
-            sushiStep.classList.remove('d-none');
-            break;
-        case 3:
-            typeWriter("A picnic sounds lovely! Let's do it!");
-            questionDisplay.textContent = "Where should we have the picnic?";
-            picnicStep.classList.remove('d-none');
-            break;
-        default:
-            return "";
-    }
-}
 
 film1.addEventListener('mouseover', () => {
     indecidedCounter++;
@@ -432,10 +448,7 @@ confirmBtn.addEventListener('click', (e) => {
 });
 
 finishBtn.addEventListener('click', () => {
-    winScreen.classList.remove('d-none');
-    statusBar.classList.add('d-none');
-    characterPanel.classList.add('d-none');
-    reportPanel.classList.add('d-none');
+    winSequence();
 });
 
 ghostBtn.addEventListener('mouseover', () => {
