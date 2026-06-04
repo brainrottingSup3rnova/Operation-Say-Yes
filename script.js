@@ -8,7 +8,10 @@ const confirmBtn = document.getElementById('confirmBtn');
 const ghostBtn = document.getElementById('ghostBtn');
 const finishBtn = document.getElementById('finishBtn');
 const muteBtn = document.getElementById('muteBtn');
+
+//the mute button icons
 const muteIcon = document.getElementById('muteIcon');
+const volumeIcon = document.getElementById('volumeIcon');
 
 //the elements of the girl and the speech bubble
 const characterPanel = document.querySelector('.character-panel');
@@ -255,18 +258,18 @@ window.addEventListener('click', () => {
 
 //the event listener for the mute button
 muteBtn.addEventListener('click', () => {
-    isMuted = !isMuted; // Inverte lo stato
+    isMuted = !isMuted; 
 
-    // Applica il mute/unmute a tutti i suoni
     allAudioElements.forEach(audio => {
         audio.muted = isMuted;
     });
 
-    // Cambia l'icona del pulsante a seconda dello stato
     if (isMuted) {
-        muteIcon.textContent = "🔇";
+        muteIcon.classList.remove('d-none');
+        volumeIcon.classList.add('d-none');
     } else {
-        muteIcon.textContent = "🔊";
+        muteIcon.classList.add('d-none');
+        volumeIcon.classList.remove('d-none');
     }
 });
 
