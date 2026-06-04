@@ -7,6 +7,8 @@ const yesBtn = document.getElementById('yesBtn');
 const confirmBtn = document.getElementById('confirmBtn');
 const ghostBtn = document.getElementById('ghostBtn');
 const finishBtn = document.getElementById('finishBtn');
+const muteBtn = document.getElementById('muteBtn');
+const muteIcon = document.getElementById('muteIcon');
 
 //the elements of the girl and the speech bubble
 const characterPanel = document.querySelector('.character-panel');
@@ -77,6 +79,9 @@ let nvmCounter = 0;
 
 let typingTimeout;
 
+//variable to manage the status of the music (muted or not)
+let isMuted = false;
+
 //the reactions for the no button and the indecided options
 const noReactions = [
     "Why do you keep trying to say no?",
@@ -91,6 +96,15 @@ const indecidedReactions = [
     "A little indecided, are we?",
     "Do you like...need help?",
     "Are you gonna choose or what?",
+];
+
+//all the audios present in the game
+const allAudioElements = [
+    backgroundMusic,
+    gameoverMusic,
+    winMusic,
+    scareSound,
+    jumpSound
 ];
 
 //the functions to manage the game logic and the character's reactions
@@ -238,6 +252,23 @@ window.addEventListener('click', () => {
         });
     }
 }, { once: true });
+
+//the event listener for the mute button
+muteBtn.addEventListener('click', () => {
+    isMuted = !isMuted; // Inverte lo stato
+
+    // Applica il mute/unmute a tutti i suoni
+    allAudioElements.forEach(audio => {
+        audio.muted = isMuted;
+    });
+
+    // Cambia l'icona del pulsante a seconda dello stato
+    if (isMuted) {
+        muteIcon.textContent = "🔇";
+    } else {
+        muteIcon.textContent = "🔊";
+    }
+});
 
 //the event listeners for all the buttons and options of the game
 
