@@ -58,6 +58,14 @@ const status = document.getElementById('statusText');
 const gameOver = document.getElementById('gameOver');
 const winScreen = document.getElementById('win');
 
+//music
+const backgroundMusic = document.getElementById('bgMusic');
+backgroundMusic.volume = 0.3;
+const gameoverMusic = document.getElementById('gameOverSound');
+gameoverMusic.volume = 0.3;
+const winMusic = document.getElementById('winSound');
+winMusic.volume = 0.3;
+
 //all the counters and timers we need
 let noCounter = 0;
 let indecidedCounter = 0;
@@ -179,6 +187,8 @@ function gameOverSequence() {
     changeExpression('tired');
     questionDisplay.classList.add('d-none');
     typeWriter("You know what? Fine. I'm outta here!");
+    backgroundMusic.pause();
+    gameoverMusic.play();
 
     setTimeout(() => {
         speechBubble.classList.add('d-none');
@@ -201,6 +211,8 @@ function winSequence() {
     changeExpression('happy');
     questionDisplay.classList.add('d-none');
     typeWriter("Yay! I can't wait for our date!");
+    backgroundMusic.pause();
+    winMusic.play();
 
     setTimeout(() => {
         winScreen.classList.remove('d-none');
@@ -209,6 +221,15 @@ function winSequence() {
         reportPanel.classList.add('d-none');
     }, 3000);
 }
+
+//the event listener to start the music on the first click, since most browsers block autoplay
+window.addEventListener('click', () => {
+    if (bgMusic.paused) {
+        bgMusic.play().catch(error => {
+            console.log("Autoplay bloccato dal browser:", error);
+        });
+    }
+}, { once: true });
 
 //the event listeners for all the buttons and options of the game
 
