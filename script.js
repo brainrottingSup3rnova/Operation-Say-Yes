@@ -187,8 +187,6 @@ function gameOverSequence() {
     changeExpression('tired');
     questionDisplay.classList.add('d-none');
     typeWriter("You know what? Fine. I'm outta here!");
-    backgroundMusic.pause();
-    gameoverMusic.play();
 
     setTimeout(() => {
         speechBubble.classList.add('d-none');
@@ -201,6 +199,8 @@ function gameOverSequence() {
         characterPanel.classList.add('d-none');
         reportPanel.classList.add('d-none');
         gameOver.classList.remove('d-none');
+        backgroundMusic.pause();
+        gameoverMusic.play();
     }, 5000);
 }
 
@@ -211,11 +211,11 @@ function winSequence() {
     changeExpression('happy');
     questionDisplay.classList.add('d-none');
     typeWriter("Yay! I can't wait for our date!");
-    backgroundMusic.pause();
-    winMusic.play();
 
     setTimeout(() => {
         winScreen.classList.remove('d-none');
+        backgroundMusic.pause();
+        winMusic.play();
         statusBar.classList.add('d-none');
         characterPanel.classList.add('d-none');
         reportPanel.classList.add('d-none');
