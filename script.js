@@ -65,6 +65,10 @@ const gameoverMusic = document.getElementById('gameOverSound');
 gameoverMusic.volume = 0.3;
 const winMusic = document.getElementById('winSound');
 winMusic.volume = 0.3;
+const scareSound = document.getElementById('scareSound');
+scareSound.volume = 0.5;
+const jumpSound = document.getElementById('jumpSound');
+jumpSound.volume = 0.5;
 
 //all the counters and timers we need
 let noCounter = 0;
@@ -142,9 +146,11 @@ function shakeActiveCharacter() {
     const activeImg = document.querySelector('.character-img:not(.d-none)');
 
     if (activeImg) {
+        scareSound.play();
         activeImg.classList.add('shake-effect');
 
         setTimeout(() => {
+            scareSound.pause();
             activeImg.classList.remove('shake-effect');
         }, 500);
     }
@@ -155,9 +161,11 @@ function jumpActiveCharacter() {
     const activeImg = document.querySelector('.character-img:not(.d-none)');
 
     if (activeImg) {
+        jumpSound.play();
         activeImg.classList.add('jump-effect');
 
         setTimeout(() => {
+            jumpSound.pause();
             activeImg.classList.remove('jump-effect');
         }, 400);
     }
