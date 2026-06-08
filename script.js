@@ -205,6 +205,7 @@ function typeWriter(text, index = 0) {
     }
 }
 
+//updates the mood bar in real time
 function updateMood(amount) {
     currentMood += amount;
 
@@ -595,10 +596,10 @@ ghostBtn.addEventListener('mouseover', () => {
     typeWriter("Wait- What does that mean?! Think again!");
 });
 ghostBtn.addEventListener('click', () => {
-    updateMood(-100);
     finishBtn.classList.add('d-none');
     ghostBtn.classList.add('d-none');
-    gameOverSequence();
+    
+    updateMood(-100); 
 });
 
 //the buttons to restart the game on the win and lose screens
