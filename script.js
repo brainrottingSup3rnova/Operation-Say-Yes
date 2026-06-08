@@ -83,6 +83,10 @@ const scareSound = document.getElementById('scareSound');
 scareSound.volume = 0.5;
 const jumpSound = document.getElementById('jumpSound');
 jumpSound.volume = 0.5;
+const openInfoSound = document.getElementById('openInfoSound');
+openInfoSound.volume = 0.5
+const closeInfoSound = document.getElementById('openInfoSound');
+closeInfoSound.volume = 0.5;
 
 //all the counters and timers we need
 let noCounter = 0;
@@ -283,6 +287,7 @@ function winSequence() {
 
 //the event listener for the preference btn
 prefsBtn.addEventListener('click', () => {
+    openInfoSound.play();
     infoOpenIcon.classList.remove('d-none');
     infoClosedIcon.classList.add('d-none');
     prefsOverlay.classList.remove('d-none');
@@ -290,6 +295,7 @@ prefsBtn.addEventListener('click', () => {
     typeWriter("Hey! Are you cheating?!");
 });
 closePrefsBtn.addEventListener('click', () => {
+    closeInfoSound.play();
     infoOpenIcon.classList.add('d-none');
     infoClosedIcon.classList.remove('d-none');
     prefsOverlay.classList.add('d-none');
