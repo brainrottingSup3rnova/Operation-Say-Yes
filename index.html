@@ -11,6 +11,27 @@
 
 <body>
     <div class="game-container">
+        <button id="prefsBtn" class="prefs-btn" title="Preferenze Personaggio">
+           <img id="info-closed-icon" src="assets/pixel_info_closed.png" alt="info-closed icon" style="height: 24px; object-fit: contain;"/>
+           <img id="info-open-icon" src="assets/pixel_info_open.png" alt="info-open icon" class="d-none" style="height: 24px; object-fit: contain;"/>
+        </button>
+        <div id="prefsOverlay" class="custom-overlay d-none">
+            <div class="pixel-popup">
+                <div class="popup-header">
+                    <h2 class="popup-title">Anna's likes and dislikes</h2>
+                    <button id="closePrefsBtn" class="popup-close-btn">X</button>
+                </div>
+                <div class="popup-body">
+                    <p class="popup-section-title">Likes:</p>
+                    <ul class="popup-list">
+                    </ul>
+                    <div class="popup-divider"></div>
+                    <p class="popup-section-title">Dislikes:</p>
+                    <ul class="popup-list text-danger">
+                    </ul>
+                </div>
+            </div>
+        </div>
         <button id="muteBtn" class="mute-btn" title="Muta/Attiva Audio">
             <img src="assets/pixel_soundon.png" alt="Volume Icon" id="volumeIcon"
                 style="height: 24px; object-fit: contain;">

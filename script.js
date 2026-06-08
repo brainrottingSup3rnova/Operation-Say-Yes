@@ -8,6 +8,15 @@ const confirmBtn = document.getElementById('confirmBtn');
 const ghostBtn = document.getElementById('ghostBtn');
 const finishBtn = document.getElementById('finishBtn');
 const muteBtn = document.getElementById('muteBtn');
+const prefsBtn = document.getElementById('prefsBtn');
+const closePrefsBtn = document.getElementById('closePrefsBtn');
+
+//the preference overlay
+const prefsOverlay = document.getElementById('prefsOverlay');
+
+//the preference btn icons
+const infoOpenIcon = document.getElementById('info-open-icon');
+const infoClosedIcon = document.getElementById('info-closed-icon');
 
 //the mute button icons
 const muteIcon = document.getElementById('muteIcon');
@@ -270,6 +279,29 @@ function winSequence() {
     }, 3000);
 }
 
+//the event listeners for all the buttons and options of the game
+
+//the event listener for the preference btn
+prefsBtn.addEventListener('click', () => {
+    infoOpenIcon.classList.remove('d-none');
+    infoClosedIcon.classList.add('d-none');
+    prefsOverlay.classList.remove('d-none');
+    changeExpression('shocked');
+    typeWriter("Hey! Are you cheating?!");
+});
+closePrefsBtn.addEventListener('click', () => {
+    infoOpenIcon.classList.add('d-none');
+    infoClosedIcon.classList.remove('d-none');
+    prefsOverlay.classList.add('d-none');
+    changeExpression('normal');
+});
+prefsOverlay.addEventListener('click', (e) => {
+    if (e.target === prefsOverlay) {
+        prefsOverlay.classList.add('d-none');
+        changeExpression('normal');
+    }
+});
+
 //the event listener to start the music on the first click, since most browsers block autoplay
 window.addEventListener('click', () => {
     if (bgMusic.paused) {
@@ -295,8 +327,6 @@ muteBtn.addEventListener('click', () => {
         volumeIcon.classList.remove('d-none');
     }
 });
-
-//the event listeners for all the buttons and options of the game
 
 //first step: no button and yes button
 noBtn.addEventListener('mouseover', () => {
@@ -598,8 +628,8 @@ ghostBtn.addEventListener('mouseover', () => {
 ghostBtn.addEventListener('click', () => {
     finishBtn.classList.add('d-none');
     ghostBtn.classList.add('d-none');
-    
-    updateMood(-100); 
+
+    updateMood(-100);
 });
 
 //the buttons to restart the game on the win and lose screens
