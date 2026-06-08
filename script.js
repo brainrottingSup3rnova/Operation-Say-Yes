@@ -57,7 +57,7 @@ const reportPanel = document.querySelector('.report-panel');
 
 //status bar and its elements
 const statusBar = document.getElementById('statusBar');
-const status = document.getElementById('statusText');
+const moodBar = document.getElementById('moodBar');
 
 //win and lose screens
 const gameOver = document.getElementById('gameOver');
@@ -78,12 +78,14 @@ jumpSound.volume = 0.5;
 //all the counters and timers we need
 let noCounter = 0;
 let indecidedCounter = 0;
-let nvmCounter = 0;
 
 let typingTimeout;
 
 //variable to manage the status of the music (muted or not)
 let isMuted = false;
+
+//variable with the starting mood
+let currentMood = 50;
 
 //the reactions for the no button and the indecided options
 const noReactions = [
@@ -145,16 +147,12 @@ function changeExpression(expression) {
 
     if (expression === 'normal') {
         pixelGirlImg.classList.remove('d-none');
-        status.textContent = "Neutral";
     } else if (expression === 'shocked') {
         pixelGirlShockedImg.classList.remove('d-none');
-        status.textContent = "Shocked";
     } else if (expression === 'tired') {
         pixelGirlTiredImg.classList.remove('d-none');
-        status.textContent = "Tired";
     } else if (expression === 'happy') {
         pixelGirlImg.classList.remove('d-none');
-        status.textContent = "Happy";
     }
 }
 
@@ -204,6 +202,30 @@ function typeWriter(text, index = 0) {
         typingTimeout = setTimeout(() => {
             typeWriter(text, index + 1);
         }, 50);
+    }
+}
+
+function updateMood(amount) {
+    currentMood += amount;
+
+    if (currentMood > 100) currentMood = 100;
+    if (currentMood < 0) currentMood = 0;
+
+    moodBar.style.width = `${currentMood}%`;
+    moodBar.setAttribute('aria-valuenow', currentMood);
+
+    if (currentMood <= 30) {
+        moodBar.style.backgroundColor = '#ff4757';
+    } else if (currentMood <= 60) {
+        moodBar.style.backgroundColor = '#f1c40f';
+    } else {
+        moodBar.style.backgroundColor = '#2ecc71';
+    }
+
+    if (currentMood === 0) {
+        firstStep.classList.add('d-none');
+        secondStep.classList.add('d-none');
+        gameOverSequence();
     }
 }
 
@@ -258,7 +280,7 @@ window.addEventListener('click', () => {
 
 //the event listener for the mute button
 muteBtn.addEventListener('click', () => {
-    isMuted = !isMuted; 
+    isMuted = !isMuted;
 
     allAudioElements.forEach(audio => {
         audio.muted = isMuted;
@@ -288,16 +310,14 @@ noBtn.addEventListener('mouseover', () => {
         changeExpression('tired');
     }
     if (noCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = noReactions[Math.floor(Math.random() * noReactions.length)];
         typeWriter(reaction);
     }
-    if (noCounter === 20) {
-        firstStep.classList.add('d-none');
-        gameOverSequence();
-    }
 });
 yesBtn.addEventListener('click', () => {
+    updateMood(10);
     jumpActiveCharacter();
     changeExpression('normal');
     typeWriter("Yay! I knew you'd say yes!");
@@ -314,12 +334,14 @@ yesBtn.addEventListener('click', () => {
 cinemaOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
+        updateMood(-5);
         changeExpression('tired');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 cinemaOption.addEventListener('click', () => {
+    updateMood(10);
     reportLocation.textContent = "Cinema";
     reportLocation.classList.remove('d-none');
     changeExpression('normal');
@@ -333,12 +355,14 @@ cinemaOption.addEventListener('click', () => {
 sushiOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
+        updateMood(-5);
         changeExpression('tired');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 sushiOption.addEventListener('click', () => {
+    updateMood(10);
     reportLocation.textContent = "Sushi Place";
     reportLocation.classList.remove('d-none');
     changeExpression('normal');
@@ -352,12 +376,14 @@ sushiOption.addEventListener('click', () => {
 picnicOption.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 5 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 picnicOption.addEventListener('click', () => {
+    updateMood(10);
     reportLocation.textContent = "Picnic";
     reportLocation.classList.remove('d-none');
     changeExpression('normal');
@@ -373,15 +399,10 @@ nvmOption.addEventListener('mouseover', () => {
     typeWriter("no- you won't click it, right? right??");
 });
 nvmOption.addEventListener('click', () => {
-    nvmCounter++;
+    updateMood(-15);
     changeExpression('shocked');
     shakeActiveCharacter();
     typeWriter("NO! YOU CAN'T DO THAT! YOU PROMISED!");
-
-    if (nvmCounter === 5) {
-        secondStep.classList.add('d-none');
-        gameOverSequence();
-    }
 });
 
 //third step: the different options for each scenario
@@ -390,12 +411,14 @@ nvmOption.addEventListener('click', () => {
 film1.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 film1.addEventListener('click', () => {
+    updateMood(10);
     reportDetail.textContent = "Film: " + film1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -409,12 +432,14 @@ film1.addEventListener('click', () => {
 film2.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 film2.addEventListener('click', () => {
+    updateMood(10);
     reportDetail.textContent = "Film: " + film2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -429,12 +454,14 @@ film2.addEventListener('click', () => {
 sushi1.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 sushi1.addEventListener('click', () => {
+    updateMood(10);
     reportDetail.textContent = "Restaurant: " + sushi1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -448,12 +475,14 @@ sushi1.addEventListener('click', () => {
 sushi2.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 sushi2.addEventListener('click', () => {
+    updateMood(10);
     reportDetail.textContent = "Restaurant: " + sushi2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -468,12 +497,14 @@ sushi2.addEventListener('click', () => {
 picnic1.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 picnic1.addEventListener('click', () => {
+    updateMood(10);
     reportDetail.textContent = "Location: " + picnic1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -487,12 +518,14 @@ picnic1.addEventListener('click', () => {
 picnic2.addEventListener('mouseover', () => {
     indecidedCounter++;
     if (indecidedCounter % 3 === 0) {
+        updateMood(-5);
         changeExpression('shocked');
         const reaction = indecidedReactions[Math.floor(Math.random() * indecidedReactions.length)];
         typeWriter(reaction);
     }
 });
 picnic2.addEventListener('click', () => {
+    updateMood(10);
     reportDetail.textContent = "Location: " + picnic2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -505,6 +538,7 @@ picnic2.addEventListener('click', () => {
 
 //fourth step: choosing the date and time of the date and confirming it
 confirmBtn.addEventListener('click', (e) => {
+    updateMood(10);
     e.preventDefault();
 
     const datePickerValue = document.getElementById('datePicker').value;
@@ -561,6 +595,7 @@ ghostBtn.addEventListener('mouseover', () => {
     typeWriter("Wait- What does that mean?! Think again!");
 });
 ghostBtn.addEventListener('click', () => {
+    updateMood(-100);
     finishBtn.classList.add('d-none');
     ghostBtn.classList.add('d-none');
     gameOverSequence();
