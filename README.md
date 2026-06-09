@@ -41,14 +41,14 @@ Choose wisely—every choice impacts her mood!
 ## 🚀 How to Run the Project Locally
 Since the game loads local audio elements, modern web browsers might block features due to CORS policies if you just double-click the index.html file. It's best to run it through a local web server.
 
-# Method 1: VS Code Live Server (Recommended)
+### Method 1: VS Code Live Server (Recommended)
 Open the project folder in Visual Studio Code.
 
 Install the Live Server extension by Ritwick Dey.
 
 Click the Go Live button at the bottom right of the VS Code editor window.
 
-# Method 2: Python HTTP Server
+### Method 2: Python HTTP Server
 If you have Python installed, open your terminal/command prompt inside the project folder and run:
 
 * **Python 3.x**: python -m http.server 8000
