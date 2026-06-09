@@ -1,3 +1,5 @@
+//preferences => sushi - itoi, picnic - parco urbano, film - my neighbor totoro
+
 //all the elements we need to interact with
 //the question displayer
 const questionDisplay = document.getElementById('questionDisplayer');
@@ -71,6 +73,7 @@ const moodBar = document.getElementById('moodBar');
 //win and lose screens
 const gameOver = document.getElementById('gameOver');
 const winScreen = document.getElementById('win');
+const scoreDisplayer = document.getElementById('scoreDisplayer');
 
 //music
 const backgroundMusic = document.getElementById('bgMusic');
@@ -84,9 +87,9 @@ scareSound.volume = 0.5;
 const jumpSound = document.getElementById('jumpSound');
 jumpSound.volume = 0.5;
 const openInfoSound = document.getElementById('openInfoSound');
-openInfoSound.volume = 0.5
+openInfoSound.volume = 0.7
 const closeInfoSound = document.getElementById('openInfoSound');
-closeInfoSound.volume = 0.5;
+closeInfoSound.volume = 0.7;
 
 //all the counters and timers we need
 let noCounter = 0;
@@ -275,6 +278,7 @@ function winSequence() {
 
     setTimeout(() => {
         winScreen.classList.remove('d-none');
+        scoreDisplayer.innerHTML = currentMood;
         backgroundMusic.pause();
         winMusic.play();
         statusBar.classList.add('d-none');
@@ -378,6 +382,7 @@ cinemaOption.addEventListener('mouseover', () => {
     }
 });
 cinemaOption.addEventListener('click', () => {
+    indecidedCounter = 0;
     updateMood(10);
     reportLocation.textContent = "Cinema";
     reportLocation.classList.remove('d-none');
@@ -399,6 +404,7 @@ sushiOption.addEventListener('mouseover', () => {
     }
 });
 sushiOption.addEventListener('click', () => {
+    indecidedCounter = 0;
     updateMood(10);
     reportLocation.textContent = "Sushi Place";
     reportLocation.classList.remove('d-none');
@@ -420,6 +426,7 @@ picnicOption.addEventListener('mouseover', () => {
     }
 });
 picnicOption.addEventListener('click', () => {
+    indecidedCounter = 0;
     updateMood(10);
     reportLocation.textContent = "Picnic";
     reportLocation.classList.remove('d-none');
@@ -476,7 +483,7 @@ film2.addEventListener('mouseover', () => {
     }
 });
 film2.addEventListener('click', () => {
-    updateMood(10);
+    updateMood(15);
     reportDetail.textContent = "Film: " + film2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -498,7 +505,7 @@ sushi1.addEventListener('mouseover', () => {
     }
 });
 sushi1.addEventListener('click', () => {
-    updateMood(10);
+    updateMood(15);
     reportDetail.textContent = "Restaurant: " + sushi1.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
@@ -562,7 +569,7 @@ picnic2.addEventListener('mouseover', () => {
     }
 });
 picnic2.addEventListener('click', () => {
-    updateMood(10);
+    updateMood(15);
     reportDetail.textContent = "Location: " + picnic2.textContent;
     reportDetail.classList.remove('d-none');
     changeExpression('normal');
