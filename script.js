@@ -128,6 +128,58 @@ const allAudioElements = [
     jumpSound
 ];
 
+//all the achievements obtainable in the game
+
+const achievements = {
+    persistent_no: {title: "Stubborn Heart", desc: "For how long are you gonna keep saying no?", unlocked: false},
+    cheater: {title: "Cheater!", desc: "Hey that's not fair! You just ruined the game", unlocked: false},
+    true_romantic: {title: "True Romantic", desc: "Aww, how did you know?", unlocked: false},
+    perfect_date: {title: "Perfect Date", desc: "Don't forget to bring her flower!", unlocked: false},
+    ghosted: {title: "Ghosted", desc: "How cruel...you could've just told her!", unlocked: false},
+    indecided: {title: "Indecided", desc: "Uh...how long is this gonna take?", unlocked: false},
+
+};
+
+//the functions to manage the achievements
+
+function loadAchievements() {
+    const saved = localStorage.getItem('game_achievements');
+    if (saved) {
+        const parsed = JSON.parse(saved);
+        for (let key in parsed) {
+            if (achievements[key]) achievements[key].unlocked = parsed[key];
+        }
+    }
+}
+
+function unlockAchievement(key) {
+    if (achievements[key] && !achievements[key].unlocked) {
+        achievements[key].unlocked = true;
+        const saveState = {};
+        for (let k in achievements) saveState[k] = achievements[k].unlocked;
+        localStorage.setItem('game_achievements', JSON.stringify(saveState));
+
+        showAchievementNotification(achievements[key]);
+    }
+}
+
+function showAchievementNotification(ach) {
+    const container = document.getElementById('achievementNotification');
+    document.getElementById('achTitle').textContent = ach.title;
+    document.getElementById('achDesc').textContent = ach.desc;
+    
+    container.classList.remove('d-none');
+    container.classList.add('ach-fade-in');
+
+    // Scompare automaticamente dopo 4 secondi
+    setTimeout(() => {
+        container.classList.add('d-none');
+        container.classList.remove('ach-fade-in');
+    }, 4000);
+}
+
+loadAchievements();
+
 //the functions to manage the game logic and the character's reactions
 
 //manages all the scenarios of the third step
@@ -291,6 +343,7 @@ function winSequence() {
 
 //the event listener for the preference btn
 prefsBtn.addEventListener('click', () => {
+    unlockAchievement('cheater');
     openInfoSound.play();
     infoOpenIcon.classList.remove('d-none');
     infoClosedIcon.classList.add('d-none');

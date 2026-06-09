@@ -205,27 +205,7 @@ h1 {
     color: #ff4757;
 }
 
-.prefs-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: #ffffff;
-    border: 4px solid #000000;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
-    font-family: 'Press Start 2P', monospace;
-    font-size: 16px;
-    padding: 8px 12px;
-    cursor: pointer;
-    z-index: 999;
-    transition: transform 0.05s;
-}
-
-.prefs-btn:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px #000;
-}
-
-/* Lo sfondo scuro che copre il gioco quando la finestra è aperta */
+/* all the styles for the preferences overlay */
 .custom-overlay {
     position: fixed;
     top: 0;
@@ -237,10 +217,8 @@ h1 {
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    /* Sopra a qualsiasi altra cosa */
 }
 
-/* La scatola della finestra in perfetto stile Pixel Art */
 .pixel-popup {
     background: #ffffff;
     border: 6px solid #000000;
@@ -251,7 +229,6 @@ h1 {
     color: #000000;
 }
 
-/* Header nero della finestra */
 .popup-header {
     background-color: #000000;
     padding: 12px 16px;
@@ -266,7 +243,6 @@ h1 {
     margin: 0;
 }
 
-/* Pulsante X di chiusura */
 .popup-close-btn {
     background: none;
     border: none;
@@ -281,7 +257,6 @@ h1 {
     color: #ff4757;
 }
 
-/* Contenuto interno */
 .popup-body {
     padding: 25px 20px;
     text-align: center;
@@ -308,6 +283,47 @@ h1 {
 .popup-divider {
     border-top: 4px dashed #000000;
     margin: 20px 0;
+}
+
+/* all the styles for the achievement popup*/
+.achievement-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffffff;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    z-index: 999999;
+    max-width: 350px;
+    font-family: 'Press Start 2P', monospace;
+    image-rendering: pixelated;
+}
+
+.ach-icon {
+    font-size: 24px;
+}
+
+.ach-header {
+    font-size: 8px;
+    color: #f1c40f; /* Giallo Oro */
+    margin-bottom: 5px;
+}
+
+.ach-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.ach-desc {
+    font-size: 8px;
+    color: #666666;
+    line-height: 1.4;
 }
 
 /* all the buttons styles */
@@ -381,6 +397,27 @@ h1 {
 #ghostBtn {
     height: 45px;
     width: 230px;
+}
+
+/* all the styles for the preferences popup*/
+.prefs-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #ffffff;
+    border: 4px solid #000000;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.05s;
+}
+
+.prefs-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px #000;
 }
 
 /* all the animations used in the game*/
@@ -468,6 +505,20 @@ h1 {
 .walk-out-effect {
     animation: walkOut 5.0s forwards ease-in-out;
     pointer-events: none;
+}
+
+/*the fade animation for the achievement popup*/
+.ach-fade-in {
+    animation: achSlideIn 0.3s ease-out forwards;
+}
+
+@keyframes achSlideIn {
+    0% {
+        transform: translateX(120%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 /* responsive design for smaller screens */

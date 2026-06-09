@@ -11,9 +11,19 @@
 
 <body>
     <div class="game-container">
+        <div id="achievementNotification" class="achievement-toast d-none">
+            <div class="ach-icon"></div>
+            <div class="ach-text">
+                <div class="ach-header">ACHIEVEMENT UNLOCKED!</div>
+                <div id="achTitle" class="ach-title">Nome Obiettivo</div>
+                <div id="achDesc" class="ach-desc">Descrizione obiettivo...</div>
+            </div>
+        </div>
         <button id="prefsBtn" class="prefs-btn" title="Preferenze Personaggio">
-           <img id="info-closed-icon" src="assets/pixel_info_closed.png" alt="info-closed icon" style="height: 24px; object-fit: contain;"/>
-           <img id="info-open-icon" src="assets/pixel_info_open.png" alt="info-open icon" class="d-none" style="height: 24px; object-fit: contain;"/>
+            <img id="info-closed-icon" src="assets/pixel_info_closed.png" alt="info-closed icon"
+                style="height: 24px; object-fit: contain;" />
+            <img id="info-open-icon" src="assets/pixel_info_open.png" alt="info-open icon" class="d-none"
+                style="height: 24px; object-fit: contain;" />
         </button>
         <div id="prefsOverlay" class="custom-overlay d-none">
             <div class="pixel-popup">
@@ -28,7 +38,7 @@
                             Film: My Neighbor Totoro
                         </li>
                         <li>
-                            Sushi: Itoi Sushi 
+                            Sushi: Itoi Sushi
                         </li>
                         <li>
                             Parks: Parco Urbano
@@ -85,7 +95,9 @@
                         style="height: 100px; object-fit: contain;">
                     <h1 class="win-text">You win!</h1>
                     <p>Thank you for planning this beautiful date! I can't wait to join you :3</p>
-                    <p> Score: <p id="scoreDisplayer"> </p> </p>
+                    <p> Score:
+                    <p id="scoreDisplayer"> </p>
+                    </p>
                     <button id="restartBtn" class="btn btn-success mt-3">Restart</button>
                 </div>
                 <div id="gameOver" class="d-none">
